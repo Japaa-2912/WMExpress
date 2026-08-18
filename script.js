@@ -1,61 +1,115 @@
 // ===== script.js =====
-// WM Express Estética Automotiva - Lógica do carrinho e catálogo
+// WM Express Estética Automotiva - Lógica do carrinho, catálogo e menu mobile
 
 document.addEventListener('DOMContentLoaded', () => {
+  // ---------- MENU MOBILE ----------
+  const header = document.getElementById('header');
+  const menuToggle = document.getElementById('menu-toggle');
+  const headerNav = document.getElementById('header-nav');
+
+  function abrirMenu() {
+    headerNav.classList.add('open');
+    menuToggle.classList.add('active');
+    document.body.classList.add('menu-open');
+    menuToggle.setAttribute('aria-expanded', 'true');
+    menuToggle.setAttribute('aria-label', 'Fechar menu');
+  }
+
+  function fecharMenu() {
+    headerNav.classList.remove('open');
+    menuToggle.classList.remove('active');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.setAttribute('aria-label', 'Abrir menu');
+    // Só destrava o scroll se o carrinho também estiver fechado
+    if (!cartSidebar.classList.contains('open')) {
+      document.body.classList.remove('menu-open');
+    }
+  }
+
+  if (menuToggle && headerNav) {
+    menuToggle.addEventListener('click', () => {
+      headerNav.classList.contains('open') ? fecharMenu() : abrirMenu();
+    });
+    // Fechar ao clicar em qualquer link
+    headerNav.querySelectorAll('a').forEach(link => link.addEventListener('click', fecharMenu));
+    // Fechar com tecla ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') fecharMenu();
+    });
+  }
+
+  // ---------- HEADER: EFEITO AO ROLAR ----------
+  function handleScroll() {
+    if (header) header.classList.toggle('scrolled', window.scrollY > 40);
+  }
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  handleScroll();
+
+  // ---------- DESTACAR LINK ATIVO ----------
+  document.querySelectorAll('.header__link').forEach(link => {
+    const href = (link.getAttribute('href') || '').split('#')[0] || 'index.html';
+    if (location.pathname.endsWith(href)) link.classList.add('active');
+  });
+
   // ---------- DADOS DO CATÁLOGO ----------
   const pacotes = [
-    { id: 'p1', nome: 'Pacote 1', preco: 1500, imagem: 'img/pacote-1.jpg', tipo: 'pacote' },
-    { id: 'p2', nome: 'Pacote 2', preco: 900, imagem: 'img/pacote-2.jpg', tipo: 'pacote' },
-    { id: 'p3', nome: 'Pacote 3 Premium', preco: 1500, imagem: 'img/pacote-3.jpg', tipo: 'pacote' },
+    { id: 'p1', nome: 'Pacote 1', preco: 1500, imagem: 'pacote-1.jpg', tipo: 'pacote' },
+    { id: 'p2', nome: 'Pacote 2', preco: 900, imagem: 'pacote-2.jpg', tipo: 'pacote' },
+    { id: 'p3', nome: 'Pacote 3 Premium', preco: 1500, imagem: 'pacote-3.jpg', tipo: 'pacote' },
   ];
 
   const servicos = [
-    { id: 's1', nome: 'Polimento Técnico', preco: 599.00, imagem: 'servico-placeholder.jpg' },
-    { id: 's2', nome: 'Polimento Técnico SUV', preco: 899.00, imagem: 'servico-placeholder.jpg' },
-    { id: 's3', nome: 'Polimento Faróis', preco: 249.90, imagem: 'servico-placeholder.jpg' },
-    { id: 's4', nome: 'Polimento de Metais', preco: 600.00, imagem: 'servico-placeholder.jpg' },
-    { id: 's5', nome: 'Martelinho de Ouro', preco: 450.00, imagem: 'servico-placeholder.jpg' },
-    { id: 's6', nome: 'Reparos em Pintura', preco: 450.00, imagem: 'servico-placeholder.jpg' },
-    { id: 's7', nome: 'Higienização Ouro', preco: 1099.90, imagem: 'servico-placeholder.jpg' },
-    { id: 's8', nome: 'Higienização Prata', preco: 699.00, imagem: 'servico-placeholder.jpg' },
-    { id: 's9', nome: 'Oxi-sanitização', preco: 199.00, imagem: 'servico-placeholder.jpg' },
-    { id: 's10', nome: 'Lavagem Detalhada Carro', preco: 899.00, imagem: 'servico-placeholder.jpg' },
-    { id: 's11', nome: 'Lavagem Detalhada SUV', preco: 1100.00, imagem: 'servico-placeholder.jpg' },
-    { id: 's12', nome: 'Lavagem de Motor', preco: 299.90, imagem: 'servico-placeholder.jpg' },
-    { id: 's13', nome: 'Lavagem de Chassis', preco: 199.00, imagem: 'servico-placeholder.jpg' },
-    { id: 's14', nome: 'Lavagem Pick-up', preco: 90.00, imagem: 'servico-placeholder.jpg' },
-    { id: 's15', nome: 'Lavagem Utilitário', preco: 70.00, imagem: 'servico-placeholder.jpg' },
-    { id: 's16', nome: 'Lavagem Simples', preco: 49.99, imagem: 'servico-placeholder.jpg' },
-    { id: 's17', nome: 'Lavagem Simples SUV', preco: 70.00, imagem: 'servico-placeholder.jpg' },
-    { id: 's18', nome: 'Insulfilm', preco: 400.00, imagem: 'servico-placeholder.jpg' },
-    { id: 's19', nome: 'Troca de Vidro', preco: 380.00, imagem: 'servico-placeholder.jpg' },
+    { id: 's1', nome: 'Polimento Técnico', preco: 599.00 },
+    { id: 's2', nome: 'Polimento Técnico SUV', preco: 899.00 },
+    { id: 's3', nome: 'Polimento Faróis', preco: 249.90 },
+    { id: 's4', nome: 'Polimento de Metais', preco: 600.00 },
+    { id: 's5', nome: 'Martelinho de Ouro', preco: 450.00 },
+    { id: 's6', nome: 'Reparos em Pintura', preco: 450.00 },
+    { id: 's7', nome: 'Higienização Ouro', preco: 1099.90 },
+    { id: 's8', nome: 'Higienização Prata', preco: 699.00 },
+    { id: 's9', nome: 'Oxi-sanitização', preco: 199.00 },
+    { id: 's10', nome: 'Lavagem Detalhada Carro', preco: 899.00 },
+    { id: 's11', nome: 'Lavagem Detalhada SUV', preco: 1100.00 },
+    { id: 's12', nome: 'Lavagem de Motor', preco: 299.90 },
+    { id: 's13', nome: 'Lavagem de Chassis', preco: 199.00 },
+    { id: 's14', nome: 'Lavagem Pick-up', preco: 90.00 },
+    { id: 's15', nome: 'Lavagem Utilitário', preco: 70.00 },
+    { id: 's16', nome: 'Lavagem Simples', preco: 49.99 },
+    { id: 's17', nome: 'Lavagem Simples SUV', preco: 70.00 },
+    { id: 's18', nome: 'Insulfilm', preco: 400.00 },
+    { id: 's19', nome: 'Troca de Vidro', preco: 380.00 },
   ];
 
   // ---------- RENDERIZAÇÃO DO CATÁLOGO (somente em catalogo.html) ----------
   const catalogoContainer = document.getElementById('catalogo-container');
   if (catalogoContainer) {
-    // Renderizar pacotes
-    pacotes.forEach(pkg => {
-      const card = criarCardItem(pkg, true);
-      catalogoContainer.appendChild(card);
-    });
-    // Renderizar serviços
-    servicos.forEach(serv => {
-      const card = criarCardItem(serv, false);
+    const todos = [
+      ...pacotes.map(pkg => ({ ...pkg, isPacote: true })),
+      ...servicos.map(serv => ({ ...serv, isPacote: false })),
+    ];
+
+    todos.forEach((item, index) => {
+      const card = criarCardItem(item);
+      // Atraso escalonado para a animação de entrada em cascata
+      card.style.transitionDelay = `${Math.min(index % 4, 3) * 0.07}s`;
       catalogoContainer.appendChild(card);
     });
   }
 
-  function criarCardItem(item, isPacote) {
+  function criarCardItem(item) {
+    const isPremium = item.isPacote && item.id === 'p3';
+    const imagem = item.imagem || 'WMEXPRESS.jpg';
     const card = document.createElement('div');
-    card.className = `servico-card ${isPacote && item.id === 'p3' ? 'card--premium' : ''}`;
+    card.className = `servico-card reveal ${isPremium ? 'card--premium' : ''}`;
     card.innerHTML = `
-      <img src="img/${item.imagem}" alt="${item.nome}" class="servico-img" onerror="this.onerror=null;this.src='img/WMEXPRESS.jpg'">
+      <div class="card-media">
+        <img src="img/${imagem}" alt="${item.nome}" class="servico-img" loading="lazy" onerror="this.onerror=null;this.src='img/WMEXPRESS.jpg'">
+      </div>
       <div class="servico-info">
         <h3 class="servico-nome">${item.nome}</h3>
         <p class="servico-preco">R$ ${item.preco.toFixed(2)}</p>
         <button class="servico-add" onclick="adicionarAoCarrinho('${item.id}', '${item.nome}', ${item.preco})">
-          Adicionar
+          Adicionar ao Carrinho
         </button>
       </div>
     `;
@@ -77,25 +131,41 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     localStorage.setItem('wmCart', JSON.stringify(carrinho));
     atualizarSidebar();
+    animarContador();
     abrirCarrinho();
   };
 
   // ---------- CONTROLE DO CARRINHO ----------
   const cartSidebar = document.getElementById('cart-sidebar');
   const overlay = document.getElementById('overlay');
+  const cartCount = document.getElementById('cart-count');
 
   function abrirCarrinho() {
     cartSidebar.classList.add('open');
     overlay.classList.add('show');
+    document.body.classList.add('menu-open');
+    fecharMenu();
   }
 
   function fecharCarrinho() {
     cartSidebar.classList.remove('open');
     overlay.classList.remove('show');
+    // Só destrava o scroll se o menu também estiver fechado
+    if (!headerNav.classList.contains('open')) {
+      document.body.classList.remove('menu-open');
+    }
+  }
+
+  function animarContador() {
+    if (!cartCount) return;
+    cartCount.classList.remove('pop');
+    // Força reflow para reiniciar a animação
+    void cartCount.offsetWidth;
+    cartCount.classList.add('pop');
   }
 
   document.addEventListener('click', (e) => {
-    if (e.target.id === 'open-cart') abrirCarrinho();
+    if (e.target.id === 'open-cart' || e.target.closest('#open-cart')) abrirCarrinho();
     if (e.target.id === 'overlay') fecharCarrinho();
     if (e.target.classList.contains('cart-close')) fecharCarrinho();
   });
@@ -120,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <h4>${item.nome}</h4>
             <p>Qtd: ${item.quantidade} x R$ ${item.preco.toFixed(2)}</p>
           </div>
-          <button class="cart-item-remove" onclick="removerItem('${item.nome}')">
+          <button class="cart-item-remove" onclick="removerItem('${item.nome}')" aria-label="Remover ${item.nome}">
             <i class="ph ph-trash"></i>
           </button>
         </div>
@@ -133,13 +203,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const total = subtotal + upsellTotal;
 
+    if (cartCount) cartCount.textContent = carrinho.reduce((acc, item) => acc + item.quantidade, 0);
+
     cartSidebar.innerHTML = `
       <div class="cart-header">
         <h3>Seu Carrinho</h3>
-        <button class="cart-close">&times;</button>
+        <button class="cart-close" aria-label="Fechar carrinho">&times;</button>
       </div>
       <div class="cart-items">
-        ${itemsHTML || '<p style="color:#aaa;">Carrinho vazio.</p>'}
+        ${itemsHTML || '<p style="color:#aaa; text-align:center; padding:1rem 0;">Carrinho vazio.</p>'}
       </div>
       <div class="cart-upsell">
         <h4>Adicionar Serviços Extras</h4>
@@ -233,19 +305,24 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // ---------- INICIALIZAÇÃO ----------
-  // Carregar carrinho e atualizar sidebar sempre que a página carregar
   atualizarSidebar();
 
-  // Aplicar animação de reveal (se houver elementos)
+  // ---------- ANIMAÇÕES DE REVEAL ----------
   const revealElements = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
 
-  revealElements.forEach(el => observer.observe(el));
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    revealElements.forEach(el => observer.observe(el));
+  } else {
+    // Fallback: mostra tudo imediatamente se não houver suporte
+    revealElements.forEach(el => el.classList.add('visible'));
+  }
 });

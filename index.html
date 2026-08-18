@@ -2,111 +2,132 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>WM Express Estética Automotiva | Excelência em Detailing</title>
     <meta name="description" content="WM Express Estética Automotiva - Polimento técnico, vitrificação, higienização e lavagem detalhada. Agende seu serviço.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web@2.1.1" defer></script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0a'/%3E%3Ctext x='32' y='44' font-family='Arial' font-size='34' font-weight='bold' text-anchor='middle' fill='%2300ddff'%3EW%3C/text%3E%3C/svg%3E">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- HEADER -->
-    <header class="header">
+    <header class="header" id="header">
         <div class="container header__container">
-            <a href="index.html">
-                <img src="logo-placeholder.png" alt="WM Express" class="logo">
+            <a href="index.html" class="logo" aria-label="WM Express - Página inicial">
+                WM<span>Express</span>
             </a>
-            <nav class="header__nav">
+            <nav class="header__nav" id="header-nav" aria-label="Navegação principal">
                 <a href="index.html" class="header__link">Home</a>
-                <a href="#pacotes" class="header__link">Pacotes</a>
+                <a href="index.html#pacotes" class="header__link">Pacotes</a>
                 <a href="catalogo.html" class="header__link">Catálogo</a>
-                <a href="#contato" class="header__link">Contato</a>
-                <button class="header__cart-btn" id="open-cart">
+                <a href="index.html#contato" class="header__link">Contato</a>
+            </nav>
+            <div class="header__actions">
+                <button class="header__cart-btn" id="open-cart" aria-label="Abrir carrinho">
                     <i class="ph ph-shopping-cart"></i>
                     <span>Carrinho</span>
+                    <span class="header__cart-count" id="cart-count">0</span>
                 </button>
-            </nav>
+                <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="header-nav">
+                    <span class="menu-toggle__bar"></span>
+                    <span class="menu-toggle__bar"></span>
+                    <span class="menu-toggle__bar"></span>
+                </button>
+            </div>
         </div>
     </header>
 
-    <!-- HERO -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero__content">
-                <span class="hero__badge">Estética Automotiva Premium</span>
-                <h1 class="hero__title">Transformamos <span>Seu Carro</span> em Obra de Arte</h1>
-                <p class="hero__subtitle">Polimento técnico, vitrificação, higienização e lavagem detalhada com produtos importados e garantia de satisfação.</p>
-                <a href="catalogo.html" class="btn btn--azul btn--lg">Ver Catálogo Completo</a>
+    <main>
+        <!-- HERO -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero__content">
+                    <span class="hero__badge">Estética Automotiva Premium</span>
+                    <h1 class="hero__title">Transformamos <span>Seu Carro</span> em Obra de Arte</h1>
+                    <p class="hero__subtitle">Polimento técnico, vitrificação, higienização e lavagem detalhada com produtos importados e garantia de satisfação.</p>
+                    <div class="hero__actions">
+                        <a href="catalogo.html" class="btn btn--azul btn--lg">Ver Catálogo Completo</a>
+                        <a href="https://wa.me/5511970298678" target="_blank" rel="noopener" class="btn btn--outline btn--lg">
+                            <i class="ph ph-whatsapp-logo"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- PACOTES -->
-    <section class="section" id="pacotes">
-        <div class="container">
-            <div class="section__header reveal">
-                <span class="section__overline">Ofertas Especiais</span>
-                <h2 class="section__title">Nossos Pacotes</h2>
-                <p class="section__description">Escolha o pacote ideal para o seu veículo e deixe o resto com a gente.</p>
+        <!-- PACOTES -->
+        <section class="section" id="pacotes">
+            <div class="container">
+                <div class="section__header reveal">
+                    <span class="section__overline">Ofertas Especiais</span>
+                    <h2 class="section__title">Nossos Pacotes</h2>
+                    <p class="section__description">Escolha o pacote ideal para o seu veículo e deixe o resto com a gente.</p>
+                </div>
+                <div class="pacotes-grid">
+                    <!-- Pacote 1 -->
+                    <div class="card reveal">
+                        <div class="card-media">
+                            <img src="img/pacote-1.jpg" alt="Pacote 1" class="card-img" loading="lazy">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Pacote 1</h3>
+                            <p class="card-price">R$ 1.500,00</p>
+                            <p class="card-desc">Descrição do Pacote 1. Inclui serviços premium de polimento e proteção.</p>
+                            <button class="card-btn" onclick="adicionarPacote('Pacote 1', 1500)">Adicionar ao Carrinho</button>
+                        </div>
+                    </div>
+                    <!-- Pacote 2 -->
+                    <div class="card reveal">
+                        <div class="card-media">
+                            <img src="img/pacote-2.jpg" alt="Pacote 2" class="card-img" loading="lazy">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Pacote 2</h3>
+                            <p class="card-price">R$ 900,00</p>
+                            <p class="card-desc">Descrição do Pacote 2. Ótimo custo-benefício para revitalização.</p>
+                            <button class="card-btn" onclick="adicionarPacote('Pacote 2', 900)">Adicionar ao Carrinho</button>
+                        </div>
+                    </div>
+                    <!-- Pacote 3 Premium -->
+                    <div class="card card--premium reveal">
+                        <div class="card-media">
+                            <img src="img/pacote-3.jpg" alt="Pacote 3 Premium" class="card-img" loading="lazy">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Pacote 3 Premium</h3>
+                            <p class="card-price">R$ 1.500,00</p>
+                            <p class="card-desc">Descrição do Pacote Premium. Tratamento completo com vitrificação de alta performance.</p>
+                            <button class="card-btn" onclick="adicionarPacote('Pacote 3 Premium', 1500)">Adicionar ao Carrinho</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="pacotes-grid">
-                <!-- Pacote 1 -->
-                <div class="card reveal">
-                    <img src="img/pacote-1.jpg" alt="Pacote 1" class="card-img">
-                    <div class="card-body">
-                        <h3 class="card-title">Pacote 1</h3>
-                        <p class="card-price">R$ 1.500,00</p>
-                        <p class="card-desc">Descrição do Pacote 1. Inclui serviços premium de polimento e proteção.</p>
-                        <button class="card-btn" onclick="adicionarPacote('Pacote 1', 1500)">Adicionar ao Carrinho</button>
-                    </div>
-                </div>
-                <!-- Pacote 2 -->
-                <div class="card reveal">
-                    <img src="img/pacote-2.jpg" alt="Pacote 2" class="card-img">
-                    <div class="card-body">
-                        <h3 class="card-title">Pacote 2</h3>
-                        <p class="card-price">R$ 900,00</p>
-                        <p class="card-desc">Descrição do Pacote 2. Ótimo custo-benefício para revitalização.</p>
-                        <button class="card-btn" onclick="adicionarPacote('Pacote 2', 900)">Adicionar ao Carrinho</button>
-                    </div>
-                </div>
-                <!-- Pacote 3 Premium -->
-                <div class="card card--premium reveal">
-                    <img src="img/pacote-3.jpg" alt="Pacote 3 Premium" class="card-img">
-                    <div class="card-body">
-                        <h3 class="card-title">Pacote 3 Premium</h3>
-                        <p class="card-price">R$ 1.500,00</p>
-                        <p class="card-desc">Descrição do Pacote Premium. Tratamento completo com vitrificação de alta performance.</p>
-                        <button class="card-btn" onclick="adicionarPacote('Pacote 3 Premium', 1500)">Adicionar ao Carrinho</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- MAPA / LOCALIZAÇÃO -->
-    <section class="mapa-section" id="contato">
-        <div class="container">
-            <div class="section__header reveal">
-                <span class="section__overline">Onde Estamos</span>
-                <h2 class="section__title">Visite Nosso Estúdio</h2>
-                <p class="section__description">Rua Francisco Mendes, 264, galpão azul - 04766-050 - São Paulo, SP</p>
+        <!-- MAPA / LOCALIZAÇÃO -->
+        <section class="mapa-section" id="contato">
+            <div class="container">
+                <div class="section__header reveal">
+                    <span class="section__overline">Onde Estamos</span>
+                    <h2 class="section__title">Visite Nosso Estúdio</h2>
+                    <p class="section__description">Rua Francisco Mendes, 264, galpão azul - 04766-050 - São Paulo, SP</p>
+                </div>
+                <div class="mapa-container reveal">
+                    <iframe
+                        src="https://www.google.com/maps?q=Rua+Francisco+Mendes,+264,+S%C3%A3o+Paulo,+SP,+04766-050&output=embed"
+                        title="Mapa de localização da WM Express"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
             </div>
-            <div class="mapa-container reveal">
-                <iframe 
-                    src="https://www.google.com/maps?q=Rua+Francisco+Mendes,+264,+S%C3%A3o+Paulo,+SP,+04766-050&output=embed" 
-                    width="100%" 
-                    height="450" 
-                    style="border:0;" 
-                    allowfullscreen="" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- FOOTER -->
     <footer class="footer">
@@ -120,15 +141,15 @@
                 <div>
                     <h4 class="footer__heading">Contato</h4>
                     <p class="footer__text">Rua Francisco Mendes, 264, galpão azul<br>04766-050 - São Paulo, SP</p>
-                    <p class="footer__text">(11) 97029-8678</p>
+                    <a href="tel:+5511970298678" class="footer__text footer__link">(11) 97029-8678</a>
                 </div>
                 <div>
                     <h4 class="footer__heading">Redes Sociais</h4>
                     <div class="footer__social">
-                        <a href="https://instagram.com/wmexpress.estetica" target="_blank" aria-label="Instagram">
+                        <a href="https://instagram.com/wmexpress.estetica" target="_blank" rel="noopener" aria-label="Instagram">
                             <i class="ph ph-instagram-logo"></i>
                         </a>
-                        <a href="https://wa.me/5511970298678" target="_blank" aria-label="WhatsApp">
+                        <a href="https://wa.me/5511970298678" target="_blank" rel="noopener" aria-label="WhatsApp">
                             <i class="ph ph-whatsapp-logo"></i>
                         </a>
                     </div>
@@ -142,7 +163,7 @@
 
     <!-- CARRINHO LATERAL -->
     <div class="overlay" id="overlay"></div>
-    <aside class="cart-sidebar" id="cart-sidebar"></aside>
+    <aside class="cart-sidebar" id="cart-sidebar" aria-label="Carrinho de compras"></aside>
 
     <script src="script.js"></script>
 </body>
