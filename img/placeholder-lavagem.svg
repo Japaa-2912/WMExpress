@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Placeholder Lavagens">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#16161a"/>
+      <stop offset="1" stop-color="#0a0a0c"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.42" r="0.55">
+      <stop offset="0" stop-color="#00aaff" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#00aaff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#bg)"/>
+  <rect width="640" height="360" fill="url(#glow)"/>
+  <g stroke="#00aaff" stroke-width="1.5" opacity="0.18">
+    <path d="M0 340 L640 20"/>
+    <path d="M0 350 L640 30"/>
+  </g>
+  <g fill="#0a0a0a" stroke="#00ddff" stroke-width="3">
+    <path d="M215 150 H425 L455 195 H150 Z" rx="18"/>
+    <path d="M215 150 L255 108 H385 L425 150"/>
+  </g>
+  <circle cx="210" cy="238" r="30" fill="#0a0a0a" stroke="#00ddff" stroke-width="3"/>
+  <circle cx="430" cy="238" r="30" fill="#0a0a0a" stroke="#00ddff" stroke-width="3"/>
+  <circle cx="210" cy="238" r="11" fill="#00ddff"/>
+  <circle cx="430" cy="238" r="11" fill="#00ddff"/>
+  <path d="M520 128 c-14 22 -24 38 -24 52 a24 24 0 0 0 48 0 c0 -14 -10 -30 -24 -52 z" fill="#00ddff"/>
+  <circle cx="545" cy="112" r="6" fill="#00ddff"/>
+  <circle cx="118" cy="118" r="8" fill="#00ddff" opacity="0.7"/>
+  <text x="320" y="312" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#ffffff" letter-spacing="6">LAVAGENS</text>
+  <text x="320" y="340" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#7a7a85" letter-spacing="2">Imagem em breve</text>
+</svg>

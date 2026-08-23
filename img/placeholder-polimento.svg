@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Placeholder Polimento">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#16161a"/>
+      <stop offset="1" stop-color="#0a0a0c"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.42" r="0.55">
+      <stop offset="0" stop-color="#00aaff" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#00aaff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#bg)"/>
+  <rect width="640" height="360" fill="url(#glow)"/>
+  <g stroke="#00aaff" stroke-width="1.5" opacity="0.18">
+    <path d="M0 340 L640 20"/>
+    <path d="M0 350 L640 30"/>
+  </g>
+  <path d="M320 70 C332 128 352 148 410 160 C352 172 332 192 320 250 C308 192 288 172 230 160 C288 148 308 128 320 70 Z" fill="#00ddff"/>
+  <path d="M450 110 C456 138 466 148 494 154 C466 160 456 170 450 198 C444 170 434 160 406 154 C434 148 444 138 450 110 Z" fill="#ffd700"/>
+  <path d="M196 190 C200 208 207 215 225 219 C207 223 200 230 196 248 C192 230 185 223 167 219 C185 215 192 208 196 190 Z" fill="#ffd700"/>
+  <g stroke="#00ddff" stroke-width="3" stroke-linecap="round" opacity="0.6">
+    <path d="M250 260 H390"/>
+    <path d="M290 278 H350"/>
+  </g>
+  <text x="320" y="312" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#ffffff" letter-spacing="6">POLIMENTO</text>
+  <text x="320" y="340" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#7a7a85" letter-spacing="2">Imagem em breve</text>
+</svg>

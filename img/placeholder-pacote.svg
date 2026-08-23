@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Placeholder Pacotes">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#16161a"/>
+      <stop offset="1" stop-color="#0a0a0c"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.42" r="0.55">
+      <stop offset="0" stop-color="#ffd700" stop-opacity="0.2"/>
+      <stop offset="1" stop-color="#ffd700" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#bg)"/>
+  <rect width="640" height="360" fill="url(#glow)"/>
+  <g stroke="#ffd700" stroke-width="1.5" opacity="0.18">
+    <path d="M0 340 L640 20"/>
+    <path d="M0 350 L640 30"/>
+  </g>
+  <g fill="#0a0a0a" stroke="#ffd700" stroke-width="3">
+    <rect x="188" y="176" width="264" height="122" rx="12"/>
+    <rect x="176" y="144" width="288" height="46" rx="12"/>
+  </g>
+  <path d="M318 144 V298" stroke="#ffd700" stroke-width="5" opacity="0.9"/>
+  <path d="M320 66 C330 112 348 130 394 140 C348 150 330 168 320 214 C310 168 292 150 246 140 C292 130 310 112 320 66 Z" fill="#ffd700"/>
+  <text x="320" y="336" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#ffffff" letter-spacing="6">PACOTES</text>
+</svg>

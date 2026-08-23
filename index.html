@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>WM Express Estética Automotiva | Excelência em Detailing</title>
-    <meta name="description" content="WM Express Estética Automotiva - Polimento técnico, vitrificação, higienização e lavagem detalhada. Agende seu serviço.">
+    <title>WM Express Estética Automotiva | Lavagem, Higienização e Polimento em São Paulo</title>
+    <meta name="description" content="WM Express Estética Automotiva em São Paulo: lavagem de carro, lavagem detalhada, higienização automotiva, polimento automotivo, martelinho de ouro, insulfilm e oxi-sanitização. Agende seu serviço pelo WhatsApp.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
@@ -20,10 +20,14 @@
                 WM<span>Express</span>
             </a>
             <nav class="header__nav" id="header-nav" aria-label="Navegação principal">
-                <a href="index.html" class="header__link">Home</a>
+                <a href="index.html" class="header__link">Início</a>
+                <a href="catalogo.html" class="header__link">Serviços</a>
                 <a href="index.html#pacotes" class="header__link">Pacotes</a>
-                <a href="catalogo.html" class="header__link">Catálogo</a>
+                <a href="index.html#galeria" class="header__link">Galeria</a>
                 <a href="index.html#contato" class="header__link">Contato</a>
+                <a href="#" class="header__link header__link--wa" data-wa target="_blank" rel="noopener">
+                    <i class="ph ph-whatsapp-logo" aria-hidden="true"></i> WhatsApp
+                </a>
             </nav>
             <div class="header__actions">
                 <button class="header__cart-btn" id="open-cart" aria-label="Abrir carrinho">
@@ -46,12 +50,12 @@
             <div class="container">
                 <div class="hero__content">
                     <span class="hero__badge">Estética Automotiva Premium</span>
-                    <h1 class="hero__title">Transformamos <span>Seu Carro</span> em Obra de Arte</h1>
-                    <p class="hero__subtitle">Polimento técnico, vitrificação, higienização e lavagem detalhada com produtos importados e garantia de satisfação.</p>
+                    <h1 class="hero__title">Lavagens, Higienização <span>e Polimento</span> de Alta Performance</h1>
+                    <p class="hero__subtitle">Estética automotiva premium: lavagem de carro, lavagem detalhada, higienização, polimento e proteção com o resultado que só a WM Express entrega.</p>
                     <div class="hero__actions">
-                        <a href="catalogo.html" class="btn btn--azul btn--lg">Ver Catálogo Completo</a>
-                        <a href="https://wa.me/5511970298678" target="_blank" rel="noopener" class="btn btn--outline btn--lg">
-                            <i class="ph ph-whatsapp-logo"></i> WhatsApp
+                        <a href="catalogo.html" class="btn btn--azul btn--lg">Conheça Nossos Serviços</a>
+                        <a href="#" data-wa target="_blank" rel="noopener" class="btn btn--outline btn--lg">
+                            <i class="ph ph-whatsapp-logo"></i> Falar no WhatsApp
                         </a>
                     </div>
                 </div>
@@ -70,40 +74,67 @@
                     <!-- Pacote 1 -->
                     <div class="card reveal">
                         <div class="card-media">
-                            <img src="img/pacote-1.jpg" alt="Pacote 1" class="card-img" loading="lazy">
+                            <img src="img/pacote-1.jpg" alt="Pacote de Serviços 1 da WM Express" class="card-img" loading="lazy">
                         </div>
                         <div class="card-body">
-                            <h3 class="card-title">Pacote 1</h3>
+                            <h3 class="card-title">Pacote de Serviços 1</h3>
                             <p class="card-price">R$ 1.500,00</p>
-                            <p class="card-desc">Descrição do Pacote 1. Inclui serviços premium de polimento e proteção.</p>
-                            <button class="card-btn" onclick="adicionarPacote('Pacote 1', 1500)">Adicionar ao Carrinho</button>
+                            <ul class="card-inclui">
+                                <li>Higienização Prata</li>
+                                <li>Lavagem de Motor</li>
+                                <li>Lavagem de Chassis</li>
+                                <li>Lavagem Detalhada</li>
+                            </ul>
+                            <button type="button" class="card-btn" data-abrir="pacote-1">Ver detalhes</button>
                         </div>
                     </div>
                     <!-- Pacote 2 -->
                     <div class="card reveal">
                         <div class="card-media">
-                            <img src="img/pacote-2.jpg" alt="Pacote 2" class="card-img" loading="lazy">
+                            <img src="img/pacote-2.jpg" alt="Pacote de Serviços 2 da WM Express" class="card-img" loading="lazy">
                         </div>
                         <div class="card-body">
-                            <h3 class="card-title">Pacote 2</h3>
+                            <h3 class="card-title">Pacote de Serviços 2</h3>
                             <p class="card-price">R$ 900,00</p>
-                            <p class="card-desc">Descrição do Pacote 2. Ótimo custo-benefício para revitalização.</p>
-                            <button class="card-btn" onclick="adicionarPacote('Pacote 2', 900)">Adicionar ao Carrinho</button>
+                            <ul class="card-inclui">
+                                <li>Higienização Prata</li>
+                                <li>Oxi-sanitização</li>
+                                <li>Troca Filtro Ar Condicionado</li>
+                                <li>Lavagem Simples</li>
+                            </ul>
+                            <button type="button" class="card-btn" data-abrir="pacote-2">Ver detalhes</button>
                         </div>
                     </div>
                     <!-- Pacote 3 Premium -->
                     <div class="card card--premium reveal">
                         <div class="card-media">
-                            <img src="img/pacote-3.jpg" alt="Pacote 3 Premium" class="card-img" loading="lazy">
+                            <img src="img/pacote-3.jpg" alt="Pacote de Serviços 3 da WM Express" class="card-img" loading="lazy">
                         </div>
                         <div class="card-body">
-                            <h3 class="card-title">Pacote 3 Premium</h3>
+                            <h3 class="card-title">Pacote de Serviços 3</h3>
                             <p class="card-price">R$ 1.500,00</p>
-                            <p class="card-desc">Descrição do Pacote Premium. Tratamento completo com vitrificação de alta performance.</p>
-                            <button class="card-btn" onclick="adicionarPacote('Pacote 3 Premium', 1500)">Adicionar ao Carrinho</button>
+                            <ul class="card-inclui">
+                                <li>Higienização Ouro</li>
+                                <li>Lavagem de Motor</li>
+                                <li>Lavagem Detalhada</li>
+                                <li>Oxi-sanitização</li>
+                            </ul>
+                            <button type="button" class="card-btn" data-abrir="pacote-3">Ver detalhes</button>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- GALERIA -->
+        <section class="section" id="galeria" aria-labelledby="titulo-galeria">
+            <div class="container">
+                <div class="section__header reveal">
+                    <span class="section__overline">Nossos Trabalhos</span>
+                    <h2 class="section__title" id="titulo-galeria">Galeria WM Express</h2>
+                    <p class="section__description">Fotos reais dos serviços de estética automotiva realizados pela WM Express.</p>
+                </div>
+                <div class="galeria-grid reveal" id="galeria-root"></div>
             </div>
         </section>
 
@@ -149,7 +180,7 @@
                         <a href="https://instagram.com/wmexpress.estetica" target="_blank" rel="noopener" aria-label="Instagram">
                             <i class="ph ph-instagram-logo"></i>
                         </a>
-                        <a href="https://wa.me/5511970298678" target="_blank" rel="noopener" aria-label="WhatsApp">
+                        <a href="#" data-wa target="_blank" rel="noopener" aria-label="WhatsApp">
                             <i class="ph ph-whatsapp-logo"></i>
                         </a>
                     </div>
@@ -160,6 +191,32 @@
             </div>
         </div>
     </footer>
+
+    <!-- MODAL DE SERVIÇO -->
+    <div class="modal-overlay" id="modal-overlay" aria-hidden="true">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+            <button type="button" class="modal__close" id="modal-close" aria-label="Fechar detalhes do serviço">&times;</button>
+            <div class="modal__scroll">
+                <div class="modal__content" id="modal-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LIGHTBOX DA GALERIA -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Galeria de fotos da WM Express" aria-hidden="true">
+        <button type="button" class="lightbox__close" id="lightbox-close" aria-label="Fechar galeria">&times;</button>
+        <button type="button" class="lightbox__nav lightbox__nav--prev" id="lightbox-prev" aria-label="Foto anterior">
+            <i class="ph ph-caret-left" aria-hidden="true"></i>
+        </button>
+        <div class="lightbox__stage">
+            <img src="" alt="" class="lightbox__img" id="lightbox-img">
+            <p class="lightbox__caption" id="lightbox-caption"></p>
+        </div>
+        <button type="button" class="lightbox__nav lightbox__nav--next" id="lightbox-next" aria-label="Próxima foto">
+            <i class="ph ph-caret-right" aria-hidden="true"></i>
+        </button>
+        <span class="lightbox__counter" id="lightbox-counter"></span>
+    </div>
 
     <!-- CARRINHO LATERAL -->
     <div class="overlay" id="overlay"></div>

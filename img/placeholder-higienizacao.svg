@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Placeholder Higienização">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#16161a"/>
+      <stop offset="1" stop-color="#0a0a0c"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.42" r="0.55">
+      <stop offset="0" stop-color="#00aaff" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#00aaff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#bg)"/>
+  <rect width="640" height="360" fill="url(#glow)"/>
+  <g stroke="#00aaff" stroke-width="1.5" opacity="0.18">
+    <path d="M0 340 L640 20"/>
+    <path d="M0 350 L640 30"/>
+  </g>
+  <g fill="#0a0a0a" stroke="#00ddff" stroke-width="3">
+    <rect x="180" y="222" width="140" height="44" rx="10"/>
+    <rect x="196" y="132" width="48" height="104" rx="12"/>
+    <rect x="192" y="108" width="56" height="22" rx="9"/>
+  </g>
+  <g fill="#00ddff">
+    <circle cx="398" cy="140" r="6"/>
+    <circle cx="418" cy="122" r="9"/>
+    <circle cx="442" cy="150" r="5"/>
+    <circle cx="462" cy="128" r="8"/>
+  </g>
+  <g stroke="#00ddff" stroke-width="3" stroke-linecap="round" opacity="0.85">
+    <path d="M410 196 L452 172"/>
+    <path d="M438 210 L480 186"/>
+  </g>
+  <text x="320" y="312" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#ffffff" letter-spacing="6">HIGIENIZAÇÃO</text>
+  <text x="320" y="340" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#7a7a85" letter-spacing="2">Imagem em breve</text>
+</svg>
