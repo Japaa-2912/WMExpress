@@ -7,6 +7,12 @@
 const WM = {
   whatsapp: '5511970298678',
   instagram: 'wmexpress.estetica',
+  // GOOGLE_REVIEWS_URL - link oficial da ficha da WM Express no
+  // Google (página onde o cliente deixa a avaliação).
+  // Substitua pelo link oficial quando tiver (ex.:
+  // https://g.page/r/xxxxx/reviews ). O valor atual usa a busca
+  // oficial do Google pelo nome da empresa, que leva à ficha real.
+  googleReviewsUrl: 'https://www.google.com/maps/search/?api=1&query=WM+Express+Est%C3%A9tica+Automotiva+S%C3%A3o+Paulo',
 };
 
 // ============================================================
@@ -14,32 +20,39 @@ const WM = {
 // Para trocar uma foto, basta alterar o caminho aqui.
 // ============================================================
 const IMAGENS = {
-  lavagemSimplesCarro: 'img/lavagem-simples-completa-carropeq.webp',
-  lavagemSimplesSuv: 'img/lavagem-simples-completa-suv.webp',
+  lavagemSimplesCarro: 'img/lavagem-simples-completa-carro-peq.webp',
+  lavagemSimplesSuv: 'img/lavagem-simples-completa-SUV.webp',
   lavagemUtilitario: 'img/lavagem-utilitario-peq.webp',
-  lavagemPickupGrande: 'img/lavagem-completa-pickup-grandeporte.webp',
+  lavagemPickupGrande: 'img/lavagem-completa-pickup-grande-esporte.webp',
   lavagemDetalhadaCarro: 'img/lavagem-detalhada-carro-peq.webp',
-  lavagemDetalhadaSuv: 'img/lavagem-det-SUV.webp',
+  lavagemDetalhadaSuv: 'img/lavagem-det-SUV.png',
   lavagemMotor: 'img/lavagem de motor.webp',
-  lavagemChassis: 'img/lavagem de chassis.webp',
+  lavagemChassis: 'img/lavagem de chassis.jpg',
   higienizacaoPrata: 'img/higienização-prata-com-oxi.webp',
-  higienizacaoOuro: 'img/higienizaçao-ouro-com-oxi.webp',
-  oxiSanitizacao: 'img/oxisatinização.webp',
+  higienizacaoOuro: 'img/higienização-ouro-com-oxi.webp',
+  oxiSanitizacao: 'img/oxisatinização.jpg',
   trocaFiltroAr: 'img/troca de filtro.webp',
   polimentoTecnico: 'img/polimento tecnico.webp',
-  polimentoTecnicoSuv: 'img/polimento tec suv.webp',
+  polimentoTecnicoSuv: 'img/polimento tec suv.png',
   polimentoFarois: 'img/revitalização de farois.webp',
-  polimentoMetais: 'img/polimentometaisalumioniuoaçiinox.webp',
+  polimentoMetais: 'img/polimentodemetaisalimínioeaçoinox.webp',
   martelinhoOuro: 'img/martelinho de ouro.webp',
-  reparoTrocaVidro: 'img/rep e troca de vidro.webp',
+  reparoTrocaVidro: 'img/reparo e troca de vidro.webp',
   reparosPintura: 'img/reparo em pintura.webp',
-  insulfilm: 'img/insufilm.webp',
+  insulfilm: 'img/insufilm.jpg',
   levaTraz: 'img/leva e traz.webp',
   camaraSeguranca: 'img/camera de segurança.webp',
   pacote1: 'img/pacote-1.jpg',
   pacote2: 'img/pacote-2.jpg',
   pacote3: 'img/pacote-3.jpg',
   wmexpress: 'img/WMEXPRESS.jpg',
+  galeriaCorolla: 'img/ima galeria/corolla.jpg',
+  galeriaI30B: 'img/ima galeria/I-30(2.jpg',
+  galeriaI30: 'img/ima galeria/I-30.jpg',
+  galeriaMercedes: 'img/ima galeria/mercedes.jpg',
+  galeriaRenegade: 'img/ima galeria/renegade.jpg',
+  galeriaTeraB: 'img/ima galeria/Tera(2.jpg',
+  galeriaTera: 'img/ima galeria/Tera.jpg',
 };
 
 // ============================================================
@@ -459,24 +472,25 @@ const SERVICOS = [
 // tamanho: 'grande' (destaque 2x2) | 'largo' (2 colunas) | padrão
 // ============================================================
 const GALERIA = [
-  { imagem: IMAGENS.wmexpress, alt: 'Fachada e equipe da WM Express Estética Automotiva', tamanho: 'grande' },
-  { imagem: IMAGENS.lavagemSimplesCarro, alt: 'Lavagem simples completa de carro pequeno', tamanho: '' },
-  { imagem: IMAGENS.lavagemDetalhadaCarro, alt: 'Lavagem detalhada de carro pequeno', tamanho: 'largo' },
-  { imagem: IMAGENS.lavagemDetalhadaSuv, alt: 'Lavagem detalhada de SUV', tamanho: '' },
-  { imagem: IMAGENS.higienizacaoOuro, alt: 'Higienização ouro com oxi-sanitização', tamanho: 'largo' },
-  { imagem: IMAGENS.higienizacaoPrata, alt: 'Higienização prata com oxi-sanitização', tamanho: '' },
-  { imagem: IMAGENS.polimentoTecnico, alt: 'Polimento técnico da pintura', tamanho: '' },
-  { imagem: IMAGENS.polimentoFarois, alt: 'Polimento e revitalização de faróis', tamanho: '' },
-  { imagem: IMAGENS.martelinhoOuro, alt: 'Martelinho de ouro - recuperação de lataria', tamanho: '' },
-  { imagem: IMAGENS.insulfilm, alt: 'Aplicação de insulfilm', tamanho: '' },
-  { imagem: IMAGENS.lavagemMotor, alt: 'Lavagem de motor', tamanho: '' },
-  { imagem: IMAGENS.camaraSeguranca, alt: 'Instalação de câmera de segurança', tamanho: '' },
+  { imagem: IMAGENS.galeriaRenegade, alt: 'Renegade finalizado na WM Express', tamanho: 'grande' },
+  { imagem: IMAGENS.galeriaCorolla, alt: 'Corolla finalizado na WM Express', tamanho: 'largo' },
+  { imagem: IMAGENS.galeriaI30B, alt: 'I-30 finalizado na WM Express', tamanho: '' },
+  { imagem: IMAGENS.galeriaMercedes, alt: 'Mercedes finalizada na WM Express', tamanho: '' },
+  { imagem: IMAGENS.galeriaTeraB, alt: 'Tera finalizado na WM Express', tamanho: '' },
+  { imagem: IMAGENS.lavagemSimplesCarro, alt: 'Lavagem simples completa de carro pequeno na WM Express', tamanho: 'largo' },
+  { imagem: IMAGENS.galeriaI30, alt: 'I-30 finalizado na WM Express', tamanho: '' },
+  { imagem: IMAGENS.galeriaTera, alt: 'Tera finalizado na WM Express', tamanho: '' },
+  { imagem: IMAGENS.polimentoTecnico, alt: 'Polimento técnico da pintura na WM Express', tamanho: '' },
+  { imagem: IMAGENS.higienizacaoOuro, alt: 'Higienização ouro do interior do veículo na WM Express', tamanho: '' },
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
-  // ---------- CONFIG: LINKS DE WHATSAPP (fonte única em WM.whatsapp) ----------
+  // ---------- CONFIG: LINKS DE WHATSAPP E GOOGLE (fonte única) ----------
   document.querySelectorAll('[data-wa]').forEach(el => {
     el.href = `https://wa.me/${WM.whatsapp}`;
+  });
+  document.querySelectorAll('[data-google-reviews]').forEach(el => {
+    el.href = WM.googleReviewsUrl;
   });
 
   // ---------- MENU MOBILE ----------
