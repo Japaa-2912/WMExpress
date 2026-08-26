@@ -45,6 +45,8 @@ const IMAGENS = {
   pacote1: 'img/pacote-1.jpg',
   pacote2: 'img/pacote-2.jpg',
   pacote3: 'img/pacote-3.jpg',
+  pacote4: 'img/pacote 4.jpg',
+  produtos: 'img/produtos.jpg',
   wmexpress: 'img/WMEXPRESS.jpg',
   galeriaCorolla: 'img/ima galeria/corolla.jpg',
   galeriaI30B: 'img/ima galeria/I-30(2.jpg',
@@ -454,8 +456,10 @@ const SERVICOS = [
       'Polimento profissional com vitrificação.',
       'Serviço para veículos Hatch e SUV, incluindo toda a lataria externa, maçanetas e emblemas.',
     ],
+    obs: ['veículos maiores consultar os valores'],
+    obsCard: 'veículos maiores consultar os valores',
     tipo: 'pacote',
-    imagem: IMAGENS.polimentoTecnico,
+    imagem: IMAGENS.pacote4,
     alt: 'Pacote de Polimento Profissional com Vitrificação na WM Express',
     recomendacoes: ['polimento-tecnico', 'polimento-tecnico-suv', 'higienizacao-ouro'],
   },
@@ -589,6 +593,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const inclui = servico.inclui
       ? `<ul class="servico-inclui">${servico.inclui.map(i => `<li>${i}</li>`).join('')}</ul>`
       : `<p class="servico-resumo">${servico.resumo}</p>`;
+    const obsCard = servico.obsCard ? `<p class="servico-obs">${servico.obsCard}</p>` : '';
     return `
       <article class="servico-card ${mods.join(' ')}">
         <div class="card-media">
@@ -599,6 +604,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <h3 class="servico-nome">${servico.nome}</h3>
           <p class="servico-preco">${servico.preco}</p>
           ${inclui}
+          ${obsCard}
           <button type="button" class="servico-btn" data-abrir="${servico.id}">Ver detalhes</button>
         </div>
       </article>
@@ -805,23 +811,38 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const lightboxEl = document.getElementById('lightbox');
+  let galeriaAtual = GALERIA;
   let indiceGaleria = 0;
   let touchX = null;
 
   function atualizarLightbox() {
     if (!lightboxEl) return;
-    const item = GALERIA[indiceGaleria];
+    const item = galeriaAtual[indiceGaleria];
     const img = document.getElementById('lightbox-img');
     const caption = document.getElementById('lightbox-caption');
     const counter = document.getElementById('lightbox-counter');
     if (img) { img.src = item.imagem; img.alt = item.alt; }
     if (caption) caption.textContent = item.alt;
-    if (counter) counter.textContent = `${indiceGaleria + 1} / ${GALERIA.length}`;
+    if (counter) counter.textContent = `${indiceGaleria + 1} / ${galeriaAtual.length}`;
   }
 
   function abrirLightbox(indice) {
     if (!lightboxEl) return;
+    galeriaAtual = GALERIA;
     indiceGaleria = indice;
+    atualizarLightbox();
+    lightboxEl.classList.add('open');
+    lightboxEl.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('menu-open');
+    const fechar = document.getElementById('lightbox-close');
+    if (fechar) fechar.focus();
+  }
+
+  // Foto dos produtos (seção própria, fora da galeria)
+  function abrirLightboxProdutos() {
+    if (!lightboxEl) return;
+    galeriaAtual = [{ imagem: IMAGENS.produtos, alt: 'Produtos utilizados pela WM Express' }];
+    indiceGaleria = 0;
     atualizarLightbox();
     lightboxEl.classList.add('open');
     lightboxEl.setAttribute('aria-hidden', 'false');
@@ -841,7 +862,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function navegarLightbox(delta) {
     if (!lightboxEl || !lightboxEl.classList.contains('open')) return;
-    indiceGaleria = (indiceGaleria + delta + GALERIA.length) % GALERIA.length;
+    indiceGaleria = (indiceGaleria + delta + galeriaAtual.length) % galeriaAtual.length;
     atualizarLightbox();
   }
 
@@ -927,6 +948,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---------- DELEGAÇÃO DE CLIQUE ----------
   document.addEventListener('click', (e) => {
+    const btnProd = e.target.closest('[data-abrir-produtos]');
+    if (btnProd) {
+      abrirLightboxProdutos();
+      return;
+    }
     const btnGal = e.target.closest('[data-galeria]');
     if (btnGal) {
       abrirLightbox(parseInt(btnGal.getAttribute('data-galeria'), 10));
