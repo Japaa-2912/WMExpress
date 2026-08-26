@@ -87,7 +87,7 @@ const SERVICOS = [
     imagem: IMAGENS.lavagemSimplesCarro,
     alt: 'Lavagem simples completa de carro pequeno na WM Express',
     destaque: true,
-    selo: 'Carro-Chefe',
+    selo: 'MAIS PEDIDO',
     recomendacoes: ['lavagem-detalhada-carro', 'oxi-sanitizacao', 'polimento-tecnico'],
   },
   {
@@ -273,7 +273,7 @@ const SERVICOS = [
     descricao: ['Polimento técnico do seu veículo com produtos de excelente qualidade, dando o acabamento fino e um brilho extraordinário na pintura do seu veículo.'],
     imagem: IMAGENS.polimentoTecnico,
     alt: 'Polimento técnico da pintura do veículo na WM Express',
-    recomendacoes: ['polimento-farois', 'lavagem-detalhada-carro', 'lavagem-motor'],
+    recomendacoes: ['polimento-farois', 'lavagem-detalhada-carro', 'pacote-polimento-vitrificacao'],
   },
   {
     id: 'polimento-tecnico-suv',
@@ -285,7 +285,7 @@ const SERVICOS = [
     descricao: ['Polimento técnico do seu veículo com produtos de excelente qualidade, dando o acabamento fino e um brilho extraordinário na pintura do seu veículo.'],
     imagem: IMAGENS.polimentoTecnicoSuv,
     alt: 'Polimento técnico de SUV na WM Express',
-    recomendacoes: ['polimento-tecnico', 'polimento-farois', 'lavagem-detalhada-suv'],
+    recomendacoes: ['polimento-tecnico', 'polimento-farois', 'pacote-polimento-vitrificacao'],
   },
   {
     id: 'polimento-farois',
@@ -306,8 +306,8 @@ const SERVICOS = [
     id: 'polimento-metais',
     categoria: 'polimento',
     nome: 'Polimento de Metais, Alumínio e Aço Inox',
-    preco: 'R$ 600,00',
-    precoNumero: 600.00,
+    preco: 'R$ 800,00',
+    precoNumero: 800.00,
     resumo: 'Polimento de rodas de liga leve, bengalas, kits de motos, aço inox e escapamentos.',
     descricao: [
       'Efetuamos o polimento de rodas de liga leve, polimento de bengalas de motos, todos os kits de motos, polimento de aço inox e escapamentos de moto.',
@@ -356,8 +356,8 @@ const SERVICOS = [
     id: 'reparos-pintura',
     categoria: 'reparos',
     nome: 'Reparos em Pintura',
-    preco: 'R$ 450,00',
-    precoNumero: 450.00,
+    preco: 'R$ 650,00',
+    precoNumero: 650.00,
     resumo: 'Pintura e re-pintura de peças danificadas que atingiram todas as camadas da pintura.',
     descricao: ['Efetuamos o serviço de pinturas e re-pinturas de peças que foram danificadas e atingiram todas as camadas da pintura.'],
     obs: ['O valor é cobrado por peça pintada.', 'Consulte condições.'],
@@ -369,8 +369,8 @@ const SERVICOS = [
     id: 'insulfilm',
     categoria: 'reparos',
     nome: 'Insulfilm',
-    preco: 'R$ 400,00',
-    precoNumero: 400.00,
+    preco: 'R$ 599,00',
+    precoNumero: 599.00,
     resumo: 'Aplicação de películas profissionais carbono, nos tons G5, G20 e G35.',
     descricao: [
       'Execução de aplicação de insulfilm, películas profissionais carbono.',
@@ -442,6 +442,22 @@ const SERVICOS = [
     imagem: IMAGENS.pacote3,
     alt: 'Pacote de serviços 3 da WM Express',
     recomendacoes: ['higienizacao-ouro', 'lavagem-motor', 'lavagem-detalhada-carro'],
+  },
+  {
+    id: 'pacote-polimento-vitrificacao',
+    categoria: 'pacotes',
+    nome: 'Pacote de Polimento Profissional com Vitrificação',
+    preco: 'R$ 2.800,00',
+    precoNumero: 2800.00,
+    resumo: 'Polimento profissional com vitrificação, incluindo toda a lataria externa, maçanetas e emblemas.',
+    descricao: [
+      'Polimento profissional com vitrificação.',
+      'Serviço para veículos Hatch e SUV, incluindo toda a lataria externa, maçanetas e emblemas.',
+    ],
+    tipo: 'pacote',
+    imagem: IMAGENS.polimentoTecnico,
+    alt: 'Pacote de Polimento Profissional com Vitrificação na WM Express',
+    recomendacoes: ['polimento-tecnico', 'polimento-tecnico-suv', 'higienizacao-ouro'],
   },
 
   // ---------- SERVIÇOS RESIDENCIAIS ----------
