@@ -47,6 +47,7 @@ const IMAGENS = {
   pacote3: 'img/pacote-3.jpg',
   pacote4: 'img/pacote 4.jpg',
   produtos: 'img/produtos.jpg',
+  descarte: 'img/descarte.jpg',
   wmexpress: 'img/WMEXPRESS.jpg',
   galeriaCorolla: 'img/ima galeria/corolla.jpg',
   galeriaI30B: 'img/ima galeria/I-30(2.jpg',
@@ -90,6 +91,7 @@ const SERVICOS = [
     alt: 'Lavagem simples completa de carro pequeno na WM Express',
     destaque: true,
     selo: 'MAIS PEDIDO',
+    allowAddons: true,
     recomendacoes: ['lavagem-detalhada-carro', 'oxi-sanitizacao', 'polimento-tecnico'],
   },
   {
@@ -102,6 +104,7 @@ const SERVICOS = [
     descricao: ['Lavagem completa com aspiração, porém simples como a de um lava-rápido tradicional, porém com produtos de excelente qualidade e o resultado que só a gente entrega.'],
     imagem: IMAGENS.lavagemSimplesSuv,
     alt: 'Lavagem simples completa de SUV na WM Express',
+    allowAddons: true,
     recomendacoes: ['lavagem-detalhada-suv', 'higienizacao-prata', 'lavagem-simples-carro'],
   },
   {
@@ -114,6 +117,7 @@ const SERVICOS = [
     descricao: ['Strada, Saveiro, Doblo, Fiorino, Courier ...'],
     imagem: IMAGENS.lavagemUtilitario,
     alt: 'Lavagem de utilitário pequeno porte na WM Express',
+    allowAddons: true,
     recomendacoes: ['lavagem-simples-carro', 'lavagem-pickup-grande', 'lavagem-motor'],
   },
   {
@@ -126,6 +130,7 @@ const SERVICOS = [
     descricao: ['Hilux, Ranger, L200, S10, Amarok, Dodge Ram'],
     imagem: IMAGENS.lavagemPickupGrande,
     alt: 'Lavagem completa de pick-up grande porte na WM Express',
+    allowAddons: true,
     recomendacoes: ['lavagem-simples-suv', 'lavagem-utilitario', 'lavagem-detalhada-suv'],
   },
   {
@@ -145,6 +150,7 @@ const SERVICOS = [
     obs: ['Destaque: resultado impecável para a parte externa do seu veículo.', 'Higienização interna inclusa.'],
     imagem: IMAGENS.lavagemDetalhadaCarro,
     alt: 'Lavagem detalhada de carro pequeno na WM Express',
+    allowAddons: true,
     recomendacoes: ['polimento-tecnico', 'higienizacao-ouro', 'lavagem-motor'],
   },
   {
@@ -164,6 +170,7 @@ const SERVICOS = [
     obs: ['Destaque: resultado impecável para a parte externa do seu veículo.', 'Higienização interna inclusa.'],
     imagem: IMAGENS.lavagemDetalhadaSuv,
     alt: 'Lavagem detalhada de SUV na WM Express',
+    allowAddons: true,
     recomendacoes: ['polimento-tecnico-suv', 'higienizacao-ouro', 'lavagem-motor'],
   },
   {
@@ -504,6 +511,14 @@ const GALERIA = [
   { imagem: IMAGENS.higienizacaoOuro, alt: 'Higienização ouro do interior do veículo na WM Express', tamanho: '' },
 ];
 
+// ============================================================
+// ADICIONAIS EXCLUSIVOS PARA LAVAGENS (serviços com allowAddons)
+// ============================================================
+const ADICIONAIS_LAVAGEM = [
+  { id: 'cera', nome: 'Cera', preco: 20.00 },
+  { id: 'shampoo-acido', nome: 'Shampoo desincrustante ácido', preco: 20.00 },
+];
+
 document.addEventListener('DOMContentLoaded', () => {
   // ---------- CONFIG: LINKS DE WHATSAPP E GOOGLE (fonte única) ----------
   document.querySelectorAll('[data-wa]').forEach(el => {
@@ -668,17 +683,65 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalContent = document.getElementById('modal-content');
   const modalClose = document.getElementById('modal-close');
   let ultimoFoco = null;
+  let servicoModalAtual = null;
+  let adicionaisModal = {};
 
-  function montarMensagemWhatsApp(servico) {
+  function formatarMoeda(v) {
+    return 'R$ ' + Number(v).toFixed(2).replace('.', ',');
+  }
+
+  function totalComAdicionais(servico, selecionados) {
+    const extra = ADICIONAIS_LAVAGEM
+      .filter(a => selecionados[a.id])
+      .reduce((s, a) => s + a.preco, 0);
+    return servico.precoNumero + extra;
+  }
+
+  function montarMensagemWhatsApp(servico, selecionados) {
     if (servico.whatsOverride) return servico.whatsOverride;
+    if (servico.allowAddons) {
+      const escolhidos = ADICIONAIS_LAVAGEM.filter(a => selecionados[a.id]);
+      let msg = `Olá! Tenho interesse no serviço de ${servico.nome}.\n\n`;
+      msg += `Valor do serviço: ${servico.preco}\n`;
+      if (escolhidos.length) {
+        msg += `\nAdicionais:\n`;
+        escolhidos.forEach(a => { msg += `- ${a.nome}: + ${formatarMoeda(a.preco)}\n`; });
+        msg += `\nValor total: ${formatarMoeda(totalComAdicionais(servico, selecionados))}`;
+      } else {
+        msg += `Adicionais: Nenhum\n`;
+        msg += `Valor total: ${formatarMoeda(totalComAdicionais(servico, selecionados))}`;
+      }
+      return msg;
+    }
     return `Olá! Vim pelo site da WM Express e tenho interesse no serviço de ${servico.nome}, no valor de ${servico.preco}. Gostaria de mais informações.`;
   }
 
-  function linkWhatsApp(servico) {
-    return `https://wa.me/${WM.whatsapp}?text=${encodeURIComponent(montarMensagemWhatsApp(servico))}`;
+  function linkWhatsApp(servico, selecionados) {
+    return `https://wa.me/${WM.whatsapp}?text=${encodeURIComponent(montarMensagemWhatsApp(servico, selecionados || {}))}`;
+  }
+
+  function montarAdicionaisHTML() {
+    return `
+      <div class="modal__adicionais">
+        <h4>Adicionais</h4>
+        ${ADICIONAIS_LAVAGEM.map(a => `
+          <label class="adicional">
+            <input type="checkbox" data-adicional="${a.id}">
+            <span class="adicional__nome">${a.nome}</span>
+            <span class="adicional__preco">+ ${formatarMoeda(a.preco)}</span>
+          </label>
+        `).join('')}
+      </div>
+      <div class="modal__total">
+        <span>Valor total</span>
+        <strong data-total-modal>${servicoModalAtual.preco}</strong>
+      </div>
+    `;
   }
 
   function renderizarModal(servico) {
+    servicoModalAtual = servico;
+    adicionaisModal = {};
     const badge = servico.selo
       ? `<span class="servico-badge ${servico.tipo === 'residencial' ? 'servico-badge--novo' : ''}">${servico.selo}</span>`
       : '';
@@ -693,6 +756,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const obs = servico.obs && servico.obs.length
       ? `<div class="modal__obs"><strong>Observações</strong>${servico.obs.map(o => `<p>${o}</p>`).join('')}</div>`
       : '';
+    const adicionais = servico.allowAddons ? montarAdicionaisHTML() : '';
     const recom = recomendar(servico);
     const tipoMod = servico.tipo === 'pacote' ? ' modal__corpo--pacote' : '';
 
@@ -709,7 +773,8 @@ document.addEventListener('DOMContentLoaded', () => {
         ${destaques}
         ${inclui}
         ${obs}
-        <a href="${linkWhatsApp(servico)}" class="modal__whats" target="_blank" rel="noopener">
+        ${adicionais}
+        <a href="${linkWhatsApp(servico, adicionaisModal)}" class="modal__whats" target="_blank" rel="noopener">
           <i class="ph ph-whatsapp-logo" aria-hidden="true"></i> Solicitar pelo WhatsApp
         </a>
         <button type="button" class="modal__carrinho" data-carrinho="${servico.id}">
@@ -838,10 +903,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (fechar) fechar.focus();
   }
 
-  // Foto dos produtos (seção própria, fora da galeria)
-  function abrirLightboxProdutos() {
+  // Imagem única (produtos, banner descarte etc.) no lightbox existente
+  function abrirLightboxUnica(imagem, alt) {
     if (!lightboxEl) return;
-    galeriaAtual = [{ imagem: IMAGENS.produtos, alt: 'Produtos utilizados pela WM Express' }];
+    galeriaAtual = [{ imagem, alt }];
     indiceGaleria = 0;
     atualizarLightbox();
     lightboxEl.classList.add('open');
@@ -950,7 +1015,12 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('click', (e) => {
     const btnProd = e.target.closest('[data-abrir-produtos]');
     if (btnProd) {
-      abrirLightboxProdutos();
+      abrirLightboxUnica(IMAGENS.produtos, 'Produtos utilizados pela WM Express');
+      return;
+    }
+    const btnDescarte = e.target.closest('[data-abrir-descarte]');
+    if (btnDescarte) {
+      abrirLightboxUnica(IMAGENS.descarte, 'Banner de descarte sustentável da WM Express');
       return;
     }
     const btnGal = e.target.closest('[data-galeria]');
@@ -974,6 +1044,27 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target.id === 'open-cart' || e.target.closest('#open-cart')) abrirCarrinho();
     if (e.target.id === 'overlay') fecharCarrinho();
     if (e.target.classList.contains('cart-close')) fecharCarrinho();
+  });
+
+  // ---------- ADICIONAIS: ATUALIZAR TOTAL E WHATSAPP AO VIVO ----------
+  document.addEventListener('change', (e) => {
+    const cb = e.target.closest('[data-adicional]');
+    if (!cb) return;
+    const id = cb.getAttribute('data-adicional');
+    if (cb.checked) adicionaisModal[id] = true;
+    else delete adicionaisModal[id];
+
+    const label = cb.closest('.adicional');
+    if (label) label.classList.toggle('adicional--ativo', cb.checked);
+
+    const totalEl = document.querySelector('[data-total-modal]');
+    if (totalEl && servicoModalAtual) {
+      totalEl.textContent = formatarMoeda(totalComAdicionais(servicoModalAtual, adicionaisModal));
+    }
+    const whats = document.querySelector('.modal__whats');
+    if (whats && servicoModalAtual) {
+      whats.href = linkWhatsApp(servicoModalAtual, adicionaisModal);
+    }
   });
 
   // ---------- TECLAS: ESC (modal > lightbox > carrinho > menu) e setas ----------

@@ -2397,7 +2397,155 @@ section.categoria {
   transform: scale(1.03);
 }
 
-.produtos-card__zoom {
+.produtos-card__texto {
+  color: #b9b9b9;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  max-width: 520px;
+  margin: 1.4rem auto 0;
+}
+
+/* ============================================================
+   ADICIONAIS DE LAVAGEM (modal)
+   ============================================================ */
+.modal__adicionais {
+  margin: 1.3rem 0 0.9rem;
+  padding-top: 1.15rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal__adicionais h4 {
+  color: var(--azul-neon);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 0.85rem;
+}
+
+.adicional {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  background: rgba(20, 20, 20, 0.9);
+  border: 1px solid rgba(0, 170, 255, 0.2);
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  margin-bottom: 0.6rem;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.adicional:last-child {
+  margin-bottom: 0;
+}
+
+.adicional:hover {
+  border-color: rgba(0, 221, 255, 0.5);
+}
+
+.adicional input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  accent-color: var(--azul);
+  cursor: pointer;
+}
+
+.adicional__nome {
+  flex: 1;
+  color: #ddd;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.adicional__preco {
+  color: var(--azul-neon);
+  font-weight: 700;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.adicional--ativo {
+  border-color: rgba(0, 221, 255, 0.7);
+  background: rgba(0, 170, 255, 0.1);
+  box-shadow: 0 0 14px rgba(0, 170, 255, 0.15);
+}
+
+.adicional--ativo .adicional__nome {
+  color: #fff;
+}
+
+.modal__total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 170, 255, 0.06);
+  border: 1px solid rgba(0, 170, 255, 0.25);
+  border-radius: 10px;
+  padding: 0.9rem 1.1rem;
+  margin-bottom: 1.1rem;
+}
+
+.modal__total span {
+  color: #bbb;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.modal__total strong {
+  color: #fff;
+  font-size: 1.25rem;
+  transition: color 0.25s ease;
+}
+
+/* ============================================================
+   DESCARTE SUSTENTÁVEL (banner abaixo do mapa)
+   ============================================================ */
+.section--descarte {
+  padding-top: 0;
+}
+
+.descarte-banner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.descarte-banner__media {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 2px solid rgba(0, 170, 255, 0.35);
+  border-radius: 16px;
+  overflow: hidden;
+  background: #111;
+  cursor: zoom-in;
+  box-shadow: 0 0 30px rgba(0, 170, 255, 0.15);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.descarte-banner__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.5s var(--ease-out);
+}
+
+.descarte-banner__media:hover {
+  border-color: rgba(0, 221, 255, 0.65);
+  box-shadow: 0 0 40px rgba(0, 170, 255, 0.3);
+}
+
+.descarte-banner__media:hover img {
+  transform: scale(1.02);
+}
+
+.produtos-card__zoom,
+.descarte-banner__zoom {
   position: absolute;
   right: 0.9rem;
   bottom: 0.9rem;
@@ -2413,14 +2561,6 @@ section.categoria {
   font-size: 1.2rem;
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
-}
-
-.produtos-card__texto {
-  color: #b9b9b9;
-  font-size: 0.95rem;
-  line-height: 1.7;
-  max-width: 520px;
-  margin: 1.4rem auto 0;
 }
 
 /* ============================================================
