@@ -2564,6 +2564,75 @@ section.categoria {
 }
 
 /* ============================================================
+   POLÍTICA DE PRIVACIDADE
+   ============================================================ */
+.privacidade-conteudo {
+  max-width: 800px;
+  margin: 0 auto;
+  background: var(--bg-card);
+  border: 1px solid rgba(0, 170, 255, 0.22);
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.privacidade-conteudo h2 {
+  font-family: 'Syncopate', sans-serif;
+  font-size: clamp(1rem, 3.5vw, 1.3rem);
+  color: #fff;
+  text-transform: uppercase;
+  margin: 1.8rem 0 0.9rem;
+  text-shadow: 0 0 12px rgba(0, 170, 255, 0.3);
+}
+
+.privacidade-conteudo h2:first-child {
+  margin-top: 0;
+}
+
+.privacidade-conteudo p,
+.privacidade-conteudo li {
+  color: #c9c9c9;
+  font-size: 0.92rem;
+  line-height: 1.75;
+}
+
+.privacidade-conteudo p {
+  margin-bottom: 0.9rem;
+}
+
+.privacidade-conteudo ol {
+  list-style: decimal;
+  padding-left: 1.4rem;
+  margin-bottom: 0.9rem;
+}
+
+.privacidade-conteudo ol li {
+  margin-bottom: 0.6rem;
+}
+
+@media (min-width: 768px) {
+  .privacidade-conteudo {
+    padding: 2.5rem 2.75rem;
+  }
+}
+
+/* ============================================================
+   LINK DO RODAPÉ
+   ============================================================ */
+.footer__bottom-link {
+  display: inline-block;
+  margin-left: 0.6rem;
+  padding-left: 0.6rem;
+  border-left: 1px solid #333;
+}
+
+.footer__bottom-link:hover {
+  color: var(--azul-neon);
+  text-shadow: 0 0 8px rgba(0, 170, 255, 0.6);
+}
+
+/* ============================================================
    ACESSIBILIDADE: FOCO VISÍVEL
    ============================================================ */
 a:focus-visible,
